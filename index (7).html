@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="am"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>መጽሐፍ ቤት</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;600;800&family=Noto+Serif+Ethiopic:wght@700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<style>
+:root{--g:#0b3326;--g2:#14543f;--g3:#e6f1ea;--y:#e0a526;--y2:#f4c24d;--r:#b3261e;--bg:#f4f6f4;--ink:#14201a;--mut:#5b6a62;--ln:#dde5df;--sh:0 1px 2px #0b33260d,0 8px 24px #0b33260f}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
+body{font:16px/1.65 "Noto Sans Ethiopic",system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+.w{max-width:1120px;margin:auto;padding:0 20px}
+header{position:sticky;top:0;z-index:30;background:#0b3326f2;backdrop-filter:blur(10px);color:#fff;box-shadow:0 2px 14px #0004}
+header:after{content:"";display:block;height:3px;background:linear-gradient(90deg,#1a7a4c 33%,var(--y) 33% 66%,var(--r) 66%)}
+header .w{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;padding:10px 20px}
+.logo{font:900 22px "Noto Serif Ethiopic",serif;cursor:pointer;margin-right:auto;display:flex;align-items:center;gap:8px;letter-spacing:.2px}
+nav{display:flex;gap:4px;overflow-x:auto;max-width:100%;scrollbar-width:none}nav::-webkit-scrollbar{display:none}
+nav button,.btn{border:0;border-radius:10px;padding:9px 16px;cursor:pointer;font-weight:700;background:linear-gradient(180deg,var(--y2),var(--y));color:#2a1f00;white-space:nowrap;transition:.18s}
+nav button{background:transparent;color:#e8f3ec;font-weight:600}nav button:hover{background:#ffffff1f}nav .on{background:#ffffff2b;color:#fff}
+.btn{box-shadow:0 2px 0 #0002}.btn:hover{transform:translateY(-1px);filter:brightness(1.06)}.btn:active{transform:none}
+.btn.g{background:linear-gradient(180deg,var(--g2),var(--g));color:#fff}.btn.r{background:var(--r);color:#fff}.btn.o{background:#fff;border:1px solid var(--ln);color:var(--ink);box-shadow:none}.btn:disabled{opacity:.65;cursor:not-allowed;transform:none}
+.hero{position:relative;overflow:hidden;color:#fff;padding:64px 0 76px;border-radius:0 0 36px 36px;
+background:radial-gradient(600px 300px at 85% 10%,#e0a52638,transparent 70%),radial-gradient(500px 300px at 0 100%,#1a7a4c66,transparent 70%),linear-gradient(135deg,#0b3326,#14543f)}
+.hero:before{content:"";position:absolute;inset:0;opacity:.07;background:conic-gradient(from 45deg at 50% 50%,#fff 0 25%,transparent 0 50%,#fff 0 75%,transparent 0) 0 0/38px 38px}
+.hero .w{position:relative}.hero h1{font:900 clamp(32px,6vw,58px)/1.2 "Noto Serif Ethiopic",serif;max-width:700px}
+.hero h1:before{content:"";display:block;width:64px;height:5px;border-radius:9px;background:var(--y);margin-bottom:18px}
+.hero p{margin-top:14px;color:#cfe5da;font-size:clamp(16px,2.2vw,20px);max-width:620px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:26px;padding:36px 0 8px}
+.card{background:#fff;border:1px solid var(--ln);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--sh);transition:.22s}
+.card:hover{transform:translateY(-5px);box-shadow:0 18px 40px #0b33262b}
+.cv{position:relative;padding:24px 24px 0;background:linear-gradient(160deg,#e3eee7,#cfe0d6)}
+.cv img,.ph{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:4px 10px 10px 4px;box-shadow:-3px 0 0 #0002,0 16px 28px #0b33264d;background:var(--g2)}
+.pdf{position:absolute;top:12px;right:12px;background:var(--g);color:var(--y2);font:800 11px/1 sans-serif;letter-spacing:1px;padding:6px 9px;border-radius:7px}
+.card .b{padding:20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h3{font:900 21px/1.35 "Noto Serif Ethiopic",serif}.nm{color:var(--g2);font-weight:700;font-size:15px}
+.d{color:var(--mut);font-size:14.5px;flex:1;white-space:pre-line}
+.bf{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;padding-top:14px;border-top:1px dashed var(--ln)}
+.pr{font:900 34px/1 "Noto Sans Ethiopic",sans-serif;color:var(--g)}.pr small{font-size:15px;font-weight:700;color:var(--r);margin-left:2px}
+.box{background:#fff;border:1px solid var(--ln);border-radius:18px;padding:26px;margin:28px auto;max-width:540px;box-shadow:var(--sh)}.box.wd{max-width:none}
+.box h2{font:900 26px "Noto Serif Ethiopic",serif;margin-bottom:14px}
+input,textarea{width:100%;padding:12px 14px;border:1.5px solid var(--ln);border-radius:10px;margin:6px 0 14px;background:#fbfdfc;transition:.15s}
+input:focus,textarea:focus{outline:0;border-color:var(--g2);box-shadow:0 0 0 4px #14543f1f;background:#fff}
+label{font-weight:700;font-size:14px;color:var(--g)}
+.row{display:flex;align-items:center;gap:10px;padding:11px 14px;border:1px solid var(--ln);border-radius:12px;margin:9px 0;background:var(--g3)}
+.row span{color:var(--mut);min-width:100px;font-size:14px}.row b{flex:1;word-break:break-all;font-size:17px}.row button{border:0;background:var(--g2);color:#fff;border-radius:8px;padding:7px 11px;cursor:pointer;transition:.15s}.row button:hover{background:var(--g)}
+.pm{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.pm button{padding:16px 6px;border:2px solid var(--ln);background:#fff;border-radius:12px;font-weight:800;cursor:pointer;transition:.15s}
+.pm button:hover{border-color:var(--g2)}.pm .on{border-color:var(--g2);background:var(--g3);box-shadow:0 0 0 4px #14543f14}
+.tag{padding:4px 12px;border-radius:99px;font-size:13px;font-weight:800;display:inline-block}.pending{background:#fff0c7;color:#6b4a00}.approved{background:#d3f0de;color:#0d5a30}.rejected{background:#fbdad6;color:#8a1c14}
+.it{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--ln)}.it:last-child{border:0}
+.tabs{display:flex;gap:8px;margin-top:26px;flex-wrap:wrap}.lk{color:var(--g2);cursor:pointer;text-decoration:underline;background:none;border:0;font-weight:600}
+footer{background:var(--g);color:#cfe5da;padding:34px 0;margin-top:56px;text-align:center;border-top:4px solid var(--y)}footer a{color:var(--y2);font-weight:700;text-decoration:none}footer a:hover{text-decoration:underline}
+#toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:12px 20px;border-radius:99px;opacity:0;transition:.25s;pointer-events:none;z-index:50;box-shadow:0 8px 24px #0006}#toast.s{opacity:1;transform:translate(-50%,0)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--y)}
+@media(max-width:560px){.logo{width:100%}.hero{padding:44px 0 56px;border-radius:0 0 26px 26px}.grid{gap:20px}.box{padding:20px}.row span{min-width:70px}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:24px}.stc{background:#fff;border:1px solid var(--ln);border-radius:14px;padding:14px 18px;box-shadow:var(--sh)}.stc span{display:block;color:var(--mut);font-size:13px;font-weight:700}.stc b{font:900 34px/1.2 sans-serif;color:var(--g)}.dt{color:var(--mut);font-size:13px}
+</style></head><body><div id="app"></div><div id="toast"></div>
+<script>
+// ===== CONFIG: paste from Supabase > Project Settings > API =====
+const SB_URL="YOUR_SUPABASE_URL",SB_KEY="YOUR_SUPABASE_ANON_KEY";
+const TG="Promax81",PH="0975999719",HOLDER="Tsegaye Fikre";
+const PAY=[{k:"cbe",n:"CBE",a:"1000626684932"},{k:"tele",n:"Telebirr",a:"0964252114"},{k:"awash",n:"Awash Bank",a:"01335630780600"}];
+const T={am:{brand:"መጽሐፍ ቤት",hero:"ጠቃሚ መፅሀፍት ለህይወቶ",sub:"ለህይወቶ ጠቃሚ የPDF መጽሐፎችን በመግዛት ህይወቶ ላይ ለውጥ ማየት ጀምሩ።",home:"መነሻ ገፅ",my:"መጽሐፎቼ",admin:"አስተዳዳሪ",login:"ግባ",signup:"አዲስ ለመመዝገብ",logout:"ውጣ",name:"ስም",email:"ኢሜይል",pw:"ፓስዋርድ",pw2:"ፓስዋርድ ድገም",noAcc:"አካውንት የለዎትም? እንደ አዲስ ተመዝገቡ",haveAcc:"አካውንት አለዎት? ይግቡ",mismatch:"ፓስዎርዶቹ አይመሳሰሉም",buy:"አሁኑኑ ለመግዛት",birr:"ብር",noBooks:"እስካሁን ምንም መፅሐፍ አልተለቀቀም",pay:"ክፍያ",choose:"የክፍያ አማራጭ ይምረጡ",accName:"የሂሳብ ስም",accNo:"የሂሳብ ቁጥር",amount:"መጠን",sent:"ክፍያ አስገብቻለሁ",receipt:"የደረሰኝ ወይም የስክሪንሻት ፎቶ",tx:"የግብይት ቁጥር",or:"ወይም",needOne:"ደረሰኝ ወይም የግብይት ቁጥር ያስገቡ",submit:"ላክ",sentOk:"ተልኳል! ክፍያው መግባቱን አረጋግጠን በቅርቡ መፅሀፉን ማውረድ ይችላሉ።",pending:"በመጠባበቅ ላይ",approved:"ፀድቋል",rejected:"ውድቅ ተደርጓል",dl:"መፅሀፉን አውርድ",payments:"ክፍያዎች",upload:"መፅሐፍ ጫን",title:"የመጽሐፉ ርዕስ",bname:"የመጽሐፉ ስም",desc:"መግለጫ",cover:"የሽፋን ምስል",pdf:"PDF ፋይል",publish:"ልቀቅ",approve:"አጽድቅ",reject:"ውድቅ አድርግ",help:"ችግር ካጋጠመዎት ያግኙን",fill:"ሁሉንም መስኮች ይሙሉ",done:"ተሳክቷል",copied:"ተቀድቷል",back:"ተመለስ",none:"ምንም የለም",view:"ደረሰኝ ይመልከቱ",del:"ሰርዝ",mail:"አካውንት ተፈጥሯል። እባክዎ ኢሜይልዎን ያረጋግጡ።",first:"ለመግዛት መጀመሪያ ይግቡ",price:"ዋጋ",book:"መጽሐፍ",sure:"እርግጠኛ ነዎት?",pn:"ስልክ ቁጥር",edit:"አስተካክል",save:"አስቀምጥ",cancel:"ተው",keep:"ባዶ ከተተወ አሁን ያለው ይቆያል",editing:"መጽሐፍ አስተካክል",visits:"ጠቅላላ ጉብኝት",uniq:"ልዩ ጎብኝዎች",users:"ተመዝጋቢዎች",regAt:"የተመዘገቡበት ቀንና ሰዓት",paidAt:"የተላከበት ቀንና ሰዓት"},
+en:{brand:"Book House",hero:"Knowledge, one tap away",sub:"Buy great PDF books and download them as soon as your payment is approved.",home:"Home",my:"My books",admin:"Admin",login:"Log in",signup:"Sign up",logout:"Log out",name:"Name",email:"Email",pw:"Password",pw2:"Repeat password",noAcc:"No account? Sign up",haveAcc:"Have an account? Log in",mismatch:"Passwords do not match",buy:"Buy now",birr:"ETB",noBooks:"No books listed yet",pay:"Payment",choose:"Choose a payment method",accName:"Account name",accNo:"Account number",amount:"Amount",sent:"I have sent the payment",receipt:"Receipt or screenshot",tx:"Transaction number",or:"or",needOne:"Add a receipt or a transaction number",submit:"Submit",sentOk:"Sent! You can download once the admin approves.",pending:"Pending",approved:"Approved",rejected:"Rejected",dl:"Download",payments:"Payments",upload:"Upload book",title:"Book title",bname:"Book name",desc:"Description",cover:"Cover image",pdf:"PDF file",publish:"Publish",approve:"Approve",reject:"Reject",help:"Need help? Contact us",fill:"Fill in all fields",done:"Done",copied:"Copied",back:"Back",none:"Nothing here",view:"View receipt",del:"Delete",mail:"Account created. Please check your email.",first:"Log in first to buy",price:"Price",book:"Book",sure:"Are you sure?",pn:"Phone number",edit:"Edit",save:"Save",cancel:"Cancel",keep:"leave empty to keep current",editing:"Edit book",visits:"Total visits",uniq:"Unique visitors",users:"Registered users",regAt:"Registered on",paidAt:"Sent on"}};
+const $=s=>document.querySelector(s);
+if(typeof supabase==="undefined"||SB_URL.startsWith("YOUR_")){document.body.innerHTML='<div style="max-width:520px;margin:60px auto;padding:20px;font-family:sans-serif"><h2>Setup needed</h2><p>Paste your Supabase URL and anon key into SB_URL and SB_KEY at the top of index.html, then open the page from your Vercel link. The Claude preview cannot run this site.</p></div>';throw new Error("setup needed")}
+const sb=supabase.createClient(SB_URL,SB_KEY);
+let L=localStorage.lang||"am",U=null,ADM=false,books=[],P=[],V={n:"home"},ST=null,US=[],ch=null;
+const t=k=>T[L][k]||k,esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt=n=>Number(n).toLocaleString("en-US"),cov=p=>p?sb.storage.from("covers").getPublicUrl(p).data.publicUrl:"";
+const clean=f=>Date.now()+"-"+f.name.replace(/[^\w.]/g,"_");
+const toast=m=>{const e=$("#toast");e.textContent=m;e.className="s";setTimeout(()=>e.className="",1600)};
+const go=async(n,x={})=>{V={n,...x};if(n=="my"||n=="admin"||(n=="home"&&U))await loadP();if(n=="admin"){live();await stats();if(V.tab=="us")await loadUsers()}render();scrollTo(0,0)};
+const switchLang=()=>{L=L=="am"?"en":"am";localStorage.lang=L;document.documentElement.lang=L;render()};
+const cp=v=>navigator.clipboard.writeText(v).then(()=>toast(t("copied")));
+const loadBooks=async()=>{books=(await sb.from("books").select("*").order("created_at",{ascending:false})).data||[]};
+const dt=x=>new Date(x).toLocaleString("en-GB",{day:"2-digit",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:true});
+const loadUsers=async()=>{US=(await sb.from("profiles").select("*").order("created_at",{ascending:false})).data||[]};
+const sbar=()=>{const s=ST||{},n=k=>s[k]!=null?fmt(s[k]):"…",c=(l,v)=>`<div class=stc><span>${l}</span><b>${v}</b></div>`;return c("👁 "+t("visits"),n("total"))+c("🧑 "+t("uniq"),n("uniq"))+c("👥 "+t("users"),n("users"))};
+async function stats(){const r=await sb.rpc("visit_stats");ST=r.data;const e=$("#stats");if(e)e.innerHTML=sbar()}
+function live(){if(ch||!ADM)return;ch=sb.channel("adm").on("postgres_changes",{event:"INSERT",schema:"public",table:"visits"},stats).on("postgres_changes",{event:"INSERT",schema:"public",table:"profiles"},async()=>{await stats();if(V.n=="admin"&&V.tab=="us"){await loadUsers();render()}}).on("postgres_changes",{event:"*",schema:"public",table:"payments"},async()=>{await loadP();if(V.n=="admin"&&V.tab=="p")render()}).subscribe()}
+function track(){try{let id=localStorage.vid;if(!id){id=crypto.randomUUID();localStorage.vid=id}if(!sessionStorage.vs){sessionStorage.vs=1;sb.from("visits").insert({visitor_id:id}).then(()=>{})}}catch(e){}}
+const loadP=async()=>{P=(await sb.from("payments").select("*,books(title,pdf_path)").order("created_at",{ascending:false})).data||[]};
+async function setUser(u){U=u||null;ADM=false;if(U){const r=await sb.from("admins").select("email").eq("email",U.email);ADM=!!(r.data&&r.data.length);await loadP();if(ADM)live()}if(!ADM&&ch){sb.removeChannel(ch);ch=null}render()}
+
+function head(){const a=n=>V.n==n?"on":"";return `<header><div class=w><div class=logo onclick="go('home')">📖 ${t("brand")}</div><nav>
+<button class="${a("home")}" onclick="go('home')">${t("home")}</button>
+${U?`<button class="${a("my")}" onclick="go('my')">${t("my")}</button>`:""}${ADM?`<button class="${a("admin")}" onclick="go('admin',{tab:'p'})">${t("admin")}</button>`:""}
+<button onclick="switchLang()">🌐 ${L=="am"?"English":"አማርኛ"}</button>
+${U?`<button onclick="sb.auth.signOut();go('home')">${t("logout")}</button>`:`<button onclick="go('auth',{mode:'login'})">${t("login")}</button>`}</nav></div></header>`}
+const foot=()=>`<footer><div class=w><p>${t("help")}</p><p>Telegram: <a href="https://t.me/${TG}" target=_blank>@${TG}</a> &nbsp;|&nbsp; ☎ <a href="tel:${PH}">${PH}</a></p></div></footer>`;
+
+const act=b=>{const p=U&&P.find(x=>x.book_id==b.id&&x.user_id==U.id);
+ if(p?.status=="pending")return `<button class="btn o" disabled>⏳ ${t("pending")}</button>`;
+ if(p?.status=="approved")return `<button class="btn g" onclick="go('my')">✓ ${t("my")}</button>`;
+ return `<button class=btn onclick="buy('${b.id}')">${t("buy")}</button>`};
+function home(){return `<section class=hero><div class=w><h1>${t("hero")}</h1><p>${t("sub")}</p></div></section><div class=w>
+${books.length?`<div class=grid>${books.map(b=>`<article class=card><div class=cv>${b.cover_path?`<img src="${cov(b.cover_path)}" alt="">`:`<div class=ph></div>`}<span class=pdf>PDF</span></div>
+<div class=b><h3>${esc(b.title)}</h3><div class=nm>${esc(b.name)}</div><p class=d>${esc(b.description)}</p>
+<div class=bf><div class=pr>${fmt(b.price)} <small>${t("birr")}</small></div>${act(b)}</div></div></article>`).join("")}</div>`:`<p style="padding:40px 0">${t("noBooks")}</p>`}</div>`}
+function buy(id){if(!U){toast(t("first"));return go("auth",{mode:"login",next:id})}if(P.some(p=>p.book_id==id&&p.user_id==U.id&&p.status!="rejected"))return go("home");go("pay",{id,m:null,sent:false})}
+
+function auth(){const s=V.mode=="signup";return `<div class=w><form class=box onsubmit="doAuth(event)"><h2>${s?t("signup"):t("login")}</h2>
+${s?`<label>${t("name")}</label><input id=an required>`:""}<label>${t("email")}</label><input id=ae type=email required>
+<label>${t("pw")}</label><input id=ap type=password minlength=6 required>${s?`<label>${t("pw2")}</label><input id=ap2 type=password minlength=6 required>`:""}
+<button class="btn" style="width:100%">${s?t("signup"):t("login")}</button><p style="margin-top:14px"><button type=button class=lk onclick="go('auth',{mode:'${s?"login":"signup"}',next:V.next})">${s?t("haveAcc"):t("noAcc")}</button></p>
+<p style="margin-top:10px;color:var(--mut);font-size:14px">${t("help")}: @${TG} · ${PH}</p></form></div>`}
+async function doAuth(e){e.preventDefault();const em=$("#ae").value.trim(),pw=$("#ap").value,s=V.mode=="signup",nx=V.next;let r;
+ if(s){if(pw!=$("#ap2").value)return toast(t("mismatch"));r=await sb.auth.signUp({email:em,password:pw,options:{data:{name:$("#an").value.trim()}}});if(!r.error&&!r.data.session)return toast(t("mail"))}
+ else r=await sb.auth.signInWithPassword({email:em,password:pw});
+ if(r.error)return toast(r.error.message);await setUser(r.data.user);nx?buy(nx):go("home")}
+
+function pay(){const b=books.find(x=>x.id==V.id),m=PAY.find(x=>x.k==V.m);if(!b)return "";
+ const R=(l,v,c=1)=>`<div class=row><span>${l}</span><b>${esc(v)}</b>${c?`<button onclick="cp('${v}')" title="Copy" aria-label="Copy">⧉</button>`:""}</div>`;
+ return `<div class=w><div class=box><button class=lk onclick="go('home')">← ${t("back")}</button><h2>${esc(b.title)}</h2><div class=pr>${fmt(b.price)} <small>${t("birr")}</small></div>
+<p style="margin-top:14px;font-weight:600">${t("choose")}</p><div class=pm>${PAY.map(x=>`<button class="${V.m==x.k?"on":""}" onclick="V.m='${x.k}';V.sent=false;render()">${x.n}</button>`).join("")}</div>
+${m?`${R(t("accName"),HOLDER)}${R(m.k=="tele"?t("pn"):t("accNo"),m.a)}${R(t("amount"),fmt(b.price)+" "+t("birr"),0)}
+${V.sent?`<hr style="margin:18px 0;border:0;border-top:1px solid var(--ln)"><label>${t("receipt")}</label><input id=rc type=file accept="image/*,.pdf"><p style="text-align:center;color:var(--mut)">— ${t("or")} —</p>
+<label>${t("tx")}</label><input id=tx><button class="btn g" style="width:100%" onclick="sendPay(this)">${t("submit")}</button>`:`<button class="btn" style="width:100%;margin-top:10px" onclick="V.sent=true;render()">${t("sent")}</button>`}`:""}
+<p style="margin-top:14px;color:var(--mut);font-size:14px">${t("help")}: @${TG} · ${PH}</p></div></div>`}
+async function sendPay(btn){const f=$("#rc").files[0],tx=$("#tx").value.trim();if(!f&&!tx)return toast(t("needOne"));btn.disabled=true;let rp=null;
+ if(f){rp=U.id+"/"+clean(f);const u=await sb.storage.from("receipts").upload(rp,f);if(u.error){btn.disabled=false;return toast(u.error.message)}}
+ const r=await sb.from("payments").insert({book_id:V.id,method:V.m,tx_number:tx||null,receipt_path:rp,user_name:U.user_metadata?.name,user_email:U.email});
+ if(r.error){btn.disabled=false;return toast(r.error.message)}alert(t("sentOk"));go("my")}
+
+const st=s=>`<span class="tag ${s}">${t(s)}</span>`;
+function my(){const l=P.filter(p=>p.user_id==U.id);return `<div class=w><div class="box wd"><h2>${t("my")}</h2>${l.length?l.map(p=>`<div class=it><div><b>${esc(p.books?.title)}</b><br>${st(p.status)}</div>
+${p.status=="approved"?`<button class="btn g" onclick="dl('${p.id}')">⬇ ${t("dl")}</button>`:""}</div>`).join(""):t("none")}</div></div>`}
+async function dl(id){const x=P.find(q=>q.id==id);if(!x)return;toast("...");const r=await sb.storage.from("pdfs").download(x.books.pdf_path);if(r.error)return toast(r.error.message);
+ const a=document.createElement("a");a.href=URL.createObjectURL(r.data);a.download=(x.books.title||"book")+".pdf";document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},4000)}
+
+function admin(){const tb=V.tab,e=books.find(x=>x.id==V.edit)||{},k=V.edit?` — ${t("keep")}`:"",B=(id,l)=>`<button class="btn ${tb==id?"g":"o"}" onclick="go('admin',{tab:'${id}'})">${l}</button>`;let h;
+ if(tb=="p")h=P.length?P.map(x=>`<div class=it><div><b>${esc(x.books?.title)}</b> — ${esc(x.method)}<br><span class=dt>🕒 ${t("paidAt")}: ${dt(x.created_at)}</span><br>${esc(x.user_name)} · ${esc(x.user_email)}<br>${x.tx_number?`${t("tx")}: <b>${esc(x.tx_number)}</b><br>`:""}
+${x.receipt_path?`<button class=lk onclick="rcpt('${x.receipt_path}')">${t("view")}</button><br>`:""}${st(x.status)}</div>
+<div><button class="btn g" onclick="setSt('${x.id}','approved')">${t("approve")}</button> <button class="btn r" onclick="setSt('${x.id}','rejected')">${t("reject")}</button></div></div>`).join(""):t("none");
+ else if(tb=="us")h=`<h2>${t("users")} (${US.length})</h2>`+(US.length?US.map(u=>`<div class=it><div><b>${esc(u.name)}</b><br>${esc(u.email)}</div><div class=dt>${t("regAt")}:<br>${dt(u.created_at)}</div></div>`).join(""):t("none"));
+ else h=`<h2>${V.edit?t("editing"):t("upload")}</h2><label>${t("title")}</label><input id=bt value="${esc(e.title)}"><label>${t("bname")}</label><input id=bn value="${esc(e.name)}"><label>${t("desc")}</label><textarea id=bd rows=4>${esc(e.description)}</textarea>
+<label>${t("price")} (${t("birr")})</label><input id=bpr type=number min=1 value="${esc(e.price)}"><label>${t("cover")}${k}</label><input id=bc type=file accept="image/*"><label>${t("pdf")}${k}</label><input id=bp type=file accept=".pdf">
+<button class=btn onclick="publish(this)">${V.edit?t("save"):t("publish")}</button>${V.edit?` <button class="btn o" onclick="go('admin',{tab:'u'})">${t("cancel")}</button>`:""}<hr style="margin:22px 0;border:0;border-top:1px solid var(--ln)">${books.map(b=>`<div class=it><b>${esc(b.title)}</b><span><button class="btn g" onclick="go('admin',{tab:'u',edit:'${b.id}'})">${t("edit")}</button> <button class="btn r" onclick="delBook('${b.id}')">${t("del")}</button></span></div>`).join("")}`;
+ return `<div class=w><div class=stats id=stats>${sbar()}</div><div class=tabs>${B("p",t("payments"))}${B("us",t("users"))}${B("u",t("upload"))}</div><div class="box wd">${h}</div></div>`}
+async function rcpt(p){const w=window.open("","_blank"),r=await sb.storage.from("receipts").createSignedUrl(p,300);r.error?(w.close(),toast(r.error.message)):w.location=r.data.signedUrl}
+async function setSt(id,s){const r=await sb.from("payments").update({status:s}).eq("id",id);if(r.error)return toast(r.error.message);await loadP();render()}
+async function publish(btn){const g=i=>$("#"+i).value.trim(),c=$("#bc").files[0],f=$("#bp").files[0],ed=books.find(x=>x.id==V.edit);
+ if(!g("bt")||!g("bn")||!g("bpr")||(!ed&&(!c||!f)))return toast(t("fill"));btn.disabled=true;let cp_=ed?.cover_path,fp=ed?.pdf_path,old=[],e=null;
+ if(c){const n=clean(c);e=(await sb.storage.from("covers").upload(n,c)).error;if(!e){if(cp_)old.push(["covers",cp_]);cp_=n}}
+ if(!e&&f){const n=clean(f);e=(await sb.storage.from("pdfs").upload(n,f)).error;if(!e){if(fp)old.push(["pdfs",fp]);fp=n}}
+ if(!e){const row={title:g("bt"),name:g("bn"),description:g("bd"),price:+g("bpr"),cover_path:cp_,pdf_path:fp};e=(ed?await sb.from("books").update(row).eq("id",ed.id):await sb.from("books").insert(row)).error}
+ if(e){btn.disabled=false;return toast(e.message)}
+ for(const [b,p] of old)await sb.storage.from(b).remove([p]);
+ await loadBooks();toast(t("done"));go("admin",{tab:"u"})}
+async function delBook(id){if(!confirm(t("sure")))return;const b=books.find(x=>x.id==id);await sb.from("books").delete().eq("id",id);
+ if(b){await sb.storage.from("pdfs").remove([b.pdf_path]);await sb.storage.from("covers").remove([b.cover_path])}await loadBooks();render()}
+
+function render(){const v={home,auth,pay,my,admin}[V.n];$("#app").innerHTML=head()+v()+foot();document.title=t("brand")}
+(async()=>{await loadBooks();const s=(await sb.auth.getSession()).data.session;await setUser(s?.user);if(!ADM)track();sb.auth.onAuthStateChange((_,x)=>{if((x?.user?.id||null)!=(U?.id||null))setUser(x?.user)})})();
+</script></body></html>
