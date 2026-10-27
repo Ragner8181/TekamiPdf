@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="am"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tekami Store</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23d4af37'/%3E%3Cpath d='M16 20h32v8H36v22h-8V28H16z' fill='%23080808'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;600;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080808;--c:#121212;--g:#d4af37;--g2:#f5dd8f;--g3:#8a6d1a;--t:#f6f1e5;--m:#a29c8a;--ln:#2b2512}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--t);font:16px/1.65 'Noto Sans Ethiopic',system-ui,sans-serif}
+a{color:inherit;text-decoration:none;cursor:pointer}
+.w{max-width:1180px;margin:auto;padding:0 18px}
+header{position:sticky;top:0;z-index:20;background:rgba(8,8,8,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--ln)}
+.hd{display:flex;align-items:center;gap:14px;min-height:68px}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0}
+.bn{font:800 21px 'Playfair Display','Noto Sans Ethiopic',serif;background:linear-gradient(90deg,var(--g2),var(--g));-webkit-background-clip:text;background-clip:text;color:transparent}
+nav{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+nav a{padding:8px 13px;border-radius:99px;color:var(--m);white-space:nowrap;font-size:14px}
+nav a:hover{color:var(--g);background:#17130a}
+nav a.lg{border:1px solid var(--g3);color:var(--g)}
+.btn{background:linear-gradient(135deg,var(--g2),var(--g) 60%,#b48f22);color:#111;border:0;border-radius:99px;padding:12px 24px;font:inherit;font-weight:700;cursor:pointer;transition:filter .2s}
+.btn:hover{filter:brightness(1.1)}
+.btn.o{background:none;color:var(--g);border:1px solid var(--g)}
+.btn.s{padding:8px 16px;font-size:14px}
+.btn[disabled]{opacity:.55;cursor:default;filter:none}
+.btn.r{background:#3a1212;color:#ffb4b4}
+:focus-visible{outline:2px solid var(--g2);outline-offset:2px}
+.hero{padding:84px 0 76px;text-align:center;background:radial-gradient(ellipse 70% 60% at 50% 0,rgba(212,175,55,.26),transparent 70%),#080808;border-bottom:1px solid var(--ln)}
+.k{color:var(--g);font-weight:600;font-size:15px}
+h1{font:800 clamp(30px,6vw,56px)/1.25 'Playfair Display','Noto Sans Ethiopic',serif;max-width:860px;margin:16px auto}
+.sub{color:var(--m);max-width:640px;margin:0 auto 30px;font-size:17px}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.sec{padding:52px 18px 8px}
+h2{font:800 26px 'Playfair Display','Noto Sans Ethiopic',serif;margin-bottom:22px}
+.sh{display:flex;justify-content:space-between;align-items:baseline}
+.lk{color:var(--g);font-size:14px}
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.cat{background:linear-gradient(160deg,#17130a,var(--c));border:1px solid var(--ln);border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:8px;transition:border-color .2s}
+.cat:hover{border-color:var(--g)}
+.cat svg{width:46px;height:46px;stroke:var(--g);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.cat h3{font-size:20px}.cat p{color:var(--m);flex:1}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:20px}
+.card{background:var(--c);border:1px solid var(--ln);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .2s}
+.card:hover{border-color:var(--g)}
+.img{aspect-ratio:3/4;background:#0d0d0d center/cover no-repeat;position:relative}
+.tag{position:absolute;top:10px;left:10px;background:var(--g);color:#111;font-size:12px;font-weight:700;padding:2px 11px;border-radius:99px}
+.cb{padding:15px;display:flex;flex-direction:column;gap:5px;flex:1}
+.cb h3{font-size:17px;line-height:1.35}.nm{color:var(--g2);font-size:13px}
+.cb p{color:var(--m);font-size:14px;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.pf{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap}
+.pr{font:800 27px 'Playfair Display',serif;color:var(--g)}.pr small{font:600 13px 'Noto Sans Ethiopic';color:var(--m)}
+.empty{border:1px dashed var(--ln);border-radius:14px;padding:30px;text-align:center;color:var(--m)}
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.why div,.how div{background:var(--c);border:1px solid var(--ln);border-radius:14px;padding:22px}
+.why i{font-style:normal;font-size:26px}.why b,.how b{display:block;margin:6px 0 2px;color:var(--g2)}
+.why span,.how span{color:var(--m);font-size:14px}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.how em{font:800 30px 'Playfair Display',serif;color:var(--g);font-style:normal}
+.box{max-width:440px;margin:40px auto;background:var(--c);border:1px solid var(--ln);border-radius:18px;padding:26px}
+.box.wide{max-width:680px}
+.box h2{margin-bottom:14px}
+label{font-size:14px;color:var(--m)}
+input,select,textarea{width:100%;background:#0b0b0b;border:1px solid #33300f;color:var(--t);border-radius:10px;padding:11px;font:inherit;margin:5px 0 13px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--g)}
+.pm{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0 16px}
+.pmb{background:#0b0b0b;color:var(--t);border:1px solid var(--ln);border-radius:12px;padding:13px 6px;font:inherit;font-weight:600;cursor:pointer}
+.pmb.on{border-color:var(--g);color:var(--g);background:#17130a}
+.det{background:#0b0b0b;border:1px solid var(--ln);border-radius:12px;padding:6px 14px;margin-bottom:16px}
+.dr{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1d1a0c}.dr:last-child{border:0}
+.dr span{color:var(--m);font-size:13px;min-width:96px}.dr b{flex:1;word-break:break-all}
+.cp{background:none;border:0;color:var(--g);cursor:pointer;padding:4px}.cp svg{width:19px;height:19px}
+.or{text-align:center;color:var(--m);margin:-4px 0 4px}
+.help{margin-top:18px;color:var(--m);font-size:14px;text-align:center}
+.tabs{display:flex;gap:8px;margin:26px 0 18px;flex-wrap:wrap}
+.tabs .btn{padding:9px 18px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+.stat{background:var(--c);border:1px solid var(--ln);border-radius:14px;padding:16px;text-align:center}
+.stat b{display:block;font:800 30px 'Playfair Display',serif;color:var(--g)}.stat span{color:var(--m);font-size:13px}
+.row{background:var(--c);border:1px solid var(--ln);border-radius:12px;padding:14px;margin-bottom:12px;display:flex;gap:14px;justify-content:space-between;flex-wrap:wrap}
+.row small{color:var(--m);display:block}
+.act{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.st{font-size:12px;padding:2px 10px;border-radius:99px;margin-left:6px}
+.st.pending{background:#3a2e08;color:#ffd666}.st.approved{background:#0f3320;color:#7ce3a6}.st.rejected{background:#3a1212;color:#ff9c9c}
+.thumb{width:54px;height:72px;background:#0d0d0d center/cover;border-radius:6px;flex-shrink:0}
+footer{margin-top:70px;border-top:1px solid var(--ln);background:#050505;padding:40px 0 26px}
+.ft{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.so{display:flex;gap:10px;margin:10px 0}
+.so a{width:44px;height:44px;border:1px solid var(--g3);border-radius:50%;display:grid;place-items:center;color:var(--g)}
+.so a:hover{background:var(--g);color:#111}.so svg{width:21px;height:21px}
+.cr{color:var(--m);font-size:13px;margin-top:26px;text-align:center}
+#toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,90px);background:var(--g);color:#111;padding:11px 22px;border-radius:99px;font-weight:700;transition:transform .3s;z-index:50;max-width:92vw;text-align:center}
+#toast.on{transform:translate(-50%,0)}
+@media(max-width:760px){.hd{flex-wrap:wrap;padding:10px 0}nav{width:100%;margin:0}.hero{padding:56px 0}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<div id="app"></div><div id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const SB_URL="YOUR_SUPABASE_URL",SB_KEY="YOUR_SUPABASE_ANON_KEY";
+const ACC={cbe:{n:"CBE",no:"1000626684932"},tele:{n:"Telebirr",no:"0964252114"},awash:{n:"Awash Bank",no:"01335630780600"}};
+const HOLDER="Tsegaye Fikre",PH="0975999719";
+const T={am:{brand:"ጠቃሚ ስቶር",navBooks:"PDF መጽሐፍት",navCourses:"የAI ፊልም መስሪያ ኮርሶች",navProducts:"ምርት እና እቃዎች",my:"ግዢዎቼ",admin:"አስተዳዳሪ",login:"ግባ",signup:"አዲስ ለመመዝገብ",logout:"ውጣ",name:"ስም",email:"ኢሜይል",pw:"ፓስዋርድ",pw2:"ፓስዋርድ ድገም",noAcc:"አካውንት የለዎትም? እንደ አዲስ ተመዝገቡ",haveAcc:"አካውንት አለዎት? ይግቡ",mismatch:"ፓስዎርዶቹ አይመሳሰሉም",buy:"አሁኑኑ ለመግዛት",birr:"ብር",choose:"የክፍያ አማራጭ ይምረጡ",accName:"የሂሳብ ስም",accNo:"የሂሳብ ቁጥር",pn:"ስልክ ቁጥር",amount:"መጠን",sent:"ክፍያ አስገብቻለሁ",receipt:"የደረሰኝ ወይም የስክሪንሻት ፎቶ",tx:"የግብይት ቁጥር",or:"ወይም",needOne:"ደረሰኝ ወይም የግብይት ቁጥር ያስገቡ",submit:"ላክ",sentOk:"ተልኳል! ክፍያው መግባቱን አረጋግጠን በቅርቡ መፅሀፉን ማውረድ ይችላሉ።",pending:"በመጠባበቅ ላይ",approved:"ፀድቋል",rejected:"ውድቅ ተደርጓል",dl:"መፅሀፉን አውርድ",payments:"ክፍያዎች",title:"የመጽሐፉ ርዕስ",bname:"የመጽሐፉ ስም",desc:"መግለጫ",price:"ዋጋ",cover:"የሽፋን ምስል",pdf:"PDF ፋይል",publish:"ልቀቅ",approve:"አጽድቅ",reject:"ውድቅ አድርግ",view:"ደረሰኝ ይመልከቱ",del:"ሰርዝ",sure:"እርግጠኛ ነዎት?",fill:"ሁሉንም መስኮች ይሙሉ",done:"ተሳክቷል",copied:"ተቀድቷል",back:"ተመለስ",none:"ምንም የለም",help:"ችግር ካጋጠመዎት ያግኙን",mail:"አካውንት ተፈጥሯል። እባክዎ ኢሜይልዎን ያረጋግጡ።",first:"ለመግዛት መጀመሪያ ይግቡ",
+heroKicker:"ጠቃሚ ስቶር - የእርሶ ዲጂታል ገበያ",hero:"ዕውቀት፣ ክህሎት እና ጥራትን በአንድ ቦታ",sub:"ጠቃሚ የPDF መጽሐፍትን፣ የAI ፊልም ሥራ ኮርሶችን እና ሌሎችም ምርጥ ምርቶችን በቀላሉ ይግዙ።",cta1:"አሁኑኑ ይግዙ",cta2:"እንዴት እንደሚሰራ ይመልከቱ",catTitle:"ምድቦቻችንን ይመልከቱ",cat1Desc:"ለሕይወትዎ ጠቃሚ የሆኑ መጽሐፍት፤ ገዝተው ወዲያው መጠቀም የሚችሉት።",cat2Desc:"በAI መሣሪያዎች ፊልም መሥራትን ከመሠረቱ ይማሩ፤ በPDF እና በቪድዮ በቀላሉ ይማሩ።",cat3Desc:"የተመረጡ ጥራት ያላቸው እቃዎችም በቀላሉ ወደ እርስዎ እናደርሳለን ።",viewAll:"ሁሉንም ይመልከቱ",latest:"አዲስ የገቡ",emptyBooks:"እስካሁን ምንም መፅሐፍ አልተለቀቀም",emptyCourses:"እስካሁን ምንም ኮርስ አልተለቀቀም",emptyProducts:"እስካሁን ምንም ምርት እና እቃ አልተለቀቀም",badgeCourse:"ኮርስ",badgeProduct:"ምርት",
+whyTitle:"ለምን ጠቃሚ Store?",why1:"ክፍያው በከፈሉ በ ደቂቃ ውስጥ ይደርሶታል",why1d:"ክፍያዎ እንደተረጋገጠ ወዲያውኑ ማግኘት የሚችሉበት።",why2:"ቀላል የክፍያ አማራች",why2d:"በCBE፣ በቴሌብር ወይም በአዋሽ ባንክ ይክፈሉ።",why3:"ሁልጊዜ 24 ሰአት የደንበኞች ድጋፍ አገልግሎት",why3d:"ለማንኛውም ጥያቄ በቴሌግራም ገፃችን ወይም በስልካችን ያግኙን።",howTitle:"እንዴት ይሰራል?",step1:"ይምረጡ",step1d:"የሚፈልጉትን መጽሐፍ፣ ኮርስ ወይም ምርት ይምረጡ።",step2:"ይክፈሉ",step2d:"የክፍያ አማራጭ መርጠው ገንዘቡን ይላኩ፤ ደረሰኙን ያያይዙ።",step3:"ይቀበሉ",step3d:"መክፈሎ ሲረጋገጥ ፋይሉን ያውርዱ፤ ምርት ከሆነ እናገኝዎታለን።",
+yourPhone:"ስልክ ቁጥርዎ",yourAddress:"አድራሻዎ (ከተማ፣ ሰፈር)",productOk:"ክፍያዎ ተልኳል! ካረጋገጥን በኋላ በሰጡን ስልክ ቁጥር እናገኝዎታለን።",approvedProduct:"ጸድቋል፤ በቅርቡ እናገኝዎታለን",kind:"የዕቃው አይነት",kindBook:"PDF መጽሐፍ",kindCourse:"የAI ፊልም ስራ ኮርስ",kindProduct:"ምርት",addNew:"አዲስ ጨምር",pName:"የምርቱ ስም",pPhoto:"የምርቱ ፎቶ",cTitle:"የኮርሱ ርዕስ",manage:"የተጫኑ ዕቃዎች",followUs:"ይከታተሉን",contactUs:"ያግኙን",rights:"መብቱ በሕግ የተጠበቀ ነው።",
+edit:"አስተካክል",save:"አስቀምጥ",cancel:"ተው",keep:"ለመቀየር ካልፈለጉ ባዶ ይተዉ",visits:"ጠቅላላ ጉብኝት",uniq:"ልዩ ጎብኝዎች",users:"ተመዝጋቢዎች",regAt:"የተመዘገቡበት ቀንና ሰዓት",sentAt:"የተላከበት ቀንና ሰዓት",setup:"ማዋቀር ያስፈልጋል፤ SB_URL እና SB_KEY ያስገቡ።"},
+en:{brand:"Tekami Store",navBooks:"PDF books",navCourses:"AI film-making courses",navProducts:"Products",my:"My purchases",admin:"Admin",login:"Log in",signup:"Sign up",logout:"Log out",name:"Name",email:"Email",pw:"Password",pw2:"Repeat password",noAcc:"No account? Sign up",haveAcc:"Have an account? Log in",mismatch:"Passwords do not match",buy:"Buy now",birr:"ETB",choose:"Choose a payment method",accName:"Account name",accNo:"Account number",pn:"Phone number",amount:"Amount",sent:"I have sent the payment",receipt:"Receipt or screenshot",tx:"Transaction number",or:"or",needOne:"Add a receipt or a transaction number",submit:"Submit",sentOk:"Sent! You can download once the admin approves.",pending:"Pending",approved:"Approved",rejected:"Rejected",dl:"Download",payments:"Payments",title:"Book title",bname:"Book name",desc:"Description",price:"Price",cover:"Cover image",pdf:"PDF file",publish:"Publish",approve:"Approve",reject:"Reject",view:"View receipt",del:"Delete",sure:"Are you sure?",fill:"Fill in all fields",done:"Done",copied:"Copied",back:"Back",none:"Nothing here",help:"Need help? Contact us",mail:"Account created. Please check your email.",first:"Log in first to buy",
+heroKicker:"Your trusted online store",hero:"Knowledge, skills and quality in one place",sub:"Easily buy useful PDF books, AI film-making courses and great products.",cta1:"Shop now",cta2:"See how it works",catTitle:"Browse our categories",cat1Desc:"Useful books for your life. Buy and use them right away.",cat2Desc:"Learn film-making with AI tools from the basics, in PDF and video.",cat3Desc:"Selected quality products, delivered to you.",viewAll:"View all",latest:"Newly added",emptyBooks:"No books listed yet",emptyCourses:"No courses listed yet",emptyProducts:"No products listed yet",badgeCourse:"Course",badgeProduct:"Product",
+whyTitle:"Why Tekami Store?",why1:"Delivered within minutes of payment",why1d:"Get your item as soon as your payment is confirmed.",why2:"Easy payment options",why2d:"Pay with CBE, Telebirr or Awash Bank.",why3:"24-hour customer support",why3d:"Contact us on Telegram or by phone for any question.",howTitle:"How it works",step1:"Choose",step1d:"Pick the book, course or product you want.",step2:"Pay",step2d:"Choose a payment method, send the money and attach the receipt.",step3:"Receive",step3d:"Download the file once confirmed. For products, we contact you.",
+yourPhone:"Your phone number",yourAddress:"Your address (city, area)",productOk:"Payment sent! We will contact you on your phone number once confirmed.",approvedProduct:"Approved, we will contact you soon",kind:"Type",kindBook:"PDF book",kindCourse:"AI film-making course",kindProduct:"Product",addNew:"Add new",pName:"Product name",pPhoto:"Product photo",cTitle:"Course title",manage:"Uploaded items",followUs:"Follow us",contactUs:"Contact us",rights:"All rights reserved.",
+edit:"Edit",save:"Save",cancel:"Cancel",keep:"Leave empty to keep the current file",visits:"Total visits",uniq:"Unique visitors",users:"Users",regAt:"Registered at",sentAt:"Sent at",setup:"Setup needed: add SB_URL and SB_KEY."}};
+const IC={book:'<path d="M5 4h13a1 1 0 0 1 1 1v14H6a1 1 0 0 0-1 1zM5 4v16"/>',film:'<rect x="3" y="8" width="18" height="12" rx="2"/><path d="M3 8l3-5h4L7 8M10 8l3-5h4l-3 5"/>',bag:'<path d="M5 8h14l-1 12H6zM9 8a3 3 0 0 1 6 0"/>'};
+const svg=p=>`<svg viewBox="0 0 24 24">${p}</svg>`;
+const COPY='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>';
+const SOC=[["Telegram","https://t.me/Promax81",'<path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>'],
+["TikTok","https://www.tiktok.com/@Aiflims35",'<path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>'],
+["YouTube","https://www.youtube.com/channel/UCwAooKbeIX1V3Y0LBPC9MOQ",'<path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>'],
+["Instagram","https://www.instagram.com/old_fx81",'<g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17.5" cy="6.5" r="1.3"/>']];
+const LOGO='<svg width="40" height="40" viewBox="0 0 64 64"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f5dd8f"/><stop offset="1" stop-color="#b08a1c"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="url(#lg)"/><path d="M16 20h32v8H36v22h-8V28H16z" fill="#080808"/><path d="M47 10l1.8 4.2L53 16l-4.2 1.8L47 22l-1.8-4.2L41 16l4.2-1.8z" fill="#080808"/></svg>';
+let L=localStorage.getItem('L')||'am',V={v:'home',tab:'pay'},U=null,ADM=false,BK=[],MY=[],AD={pays:[],users:[],prof:{},st:{total:0,uniq:0}},sb,RT=null;
+const t=k=>T[L][k]??T.en[k]??k,$=i=>document.getElementById(i);
+const e=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=d=>{try{return new Date(d).toLocaleString(L==='am'?'am-ET':'en-GB',{dateStyle:'medium',timeStyle:'medium'})}catch(x){return d}};
+const kd=b=>b.kind||'book',pub=p=>p?sb.storage.from('covers').getPublicUrl(p).data.publicUrl:'';
+const st=id=>{const p=MY.filter(x=>x.book_id===id);return p.some(x=>x.status==='approved')?'approved':p.some(x=>x.status==='pending')?'pending':''};
+function toast(m){const x=$('toast');x.textContent=m;x.className='on';clearTimeout(x.h);x.h=setTimeout(()=>x.className='',3000)}
+function go(v,p){V={v,tab:'pay',...p};render();scrollTo(0,0)}
+function setL(){L=L==='am'?'en':'am';localStorage.setItem('L',L);render()}
+function cp(v){navigator.clipboard.writeText(v).then(()=>toast(t('copied')))}
+function buy(id){if(!U){toast(t('first'));return go('login')}go('pay',{id})}
+
+function hdr(){return `<header><div class="w hd"><a class="logo" onclick="go('home')">${LOGO}<span class="bn">${t('brand')}</span></a><nav>
+<a onclick="go('list',{k:'book'})">${t('navBooks')}</a><a onclick="go('list',{k:'course'})">${t('navCourses')}</a><a onclick="go('list',{k:'product'})">${t('navProducts')}</a>
+${U?`<a onclick="go('my')">${t('my')}</a>`:''}${ADM?`<a onclick="go('admin')">${t('admin')}</a>`:''}
+${U?`<a onclick="out()">${t('logout')}</a>`:`<a onclick="go('login')">${t('login')}</a><a class="lg" onclick="go('signup')">${t('signup')}</a>`}
+<a onclick="setL()">${L==='am'?'English':'አማርኛ'}</a></nav></div></header>`}
+function ftr(){return `<footer><div class="w"><div class="ft"><div><a class="logo" onclick="go('home')">${LOGO}<span class="bn">${t('brand')}</span></a><p style="color:var(--m);margin-top:10px">${t('heroKicker')}</p></div>
+<div><b>${t('followUs')}</b><div class="so">${SOC.map(s=>`<a href="${s[1]}" target="_blank" rel="noopener" aria-label="${s[0]}"><svg viewBox="0 0 24 24" fill="currentColor">${s[2]}</svg></a>`).join('')}</div></div>
+<div><b>${t('contactUs')}</b><p style="color:var(--m)">Telegram: @Promax81<br>☎ ${PH}</p></div></div><div class="cr">© ${new Date().getFullYear()} ${t('brand')} · ${t('rights')}</div></div></footer>`}
+function card(b){const s=st(b.id),k=kd(b);
+const btn=s==='pending'?`<button class="btn s" disabled>⏳ ${t('pending')}</button>`:s==='approved'?`<button class="btn o s" onclick="go('my')">✓ ${t('my')}</button>`:`<button class="btn s" onclick="buy('${b.id}')">${t('buy')}</button>`;
+return `<div class="card"><div class="img" style="background-image:url('${e(pub(b.cover_path))}')"><span class="tag">${k==='course'?t('badgeCourse'):k==='product'?t('badgeProduct'):'PDF'}</span></div><div class="cb"><h3>${e(b.title)}</h3>${k!=='product'&&b.name?`<div class="nm">${e(b.name)}</div>`:''}<p>${e(b.description)}</p><div class="pf"><div class="pr">${Number(b.price).toLocaleString()} <small>${t('birr')}</small></div>${btn}</div></div></div>`}
+const CATS=[['book','navBooks','cat1Desc','book','emptyBooks'],['course','navCourses','cat2Desc','film','emptyCourses'],['product','navProducts','cat3Desc','bag','emptyProducts']];
+function home(){return `<section class="hero"><div class="w"><div class="k">${t('heroKicker')}</div><h1>${t('hero')}</h1><p class="sub">${t('sub')}</p><div class="cta"><button class="btn" onclick="$('cats').scrollIntoView({behavior:'smooth'})">${t('cta1')}</button><button class="btn o" onclick="$('how').scrollIntoView({behavior:'smooth'})">${t('cta2')}</button></div></div></section>
+<section class="w sec" id="cats"><h2>${t('catTitle')}</h2><div class="cats">${CATS.map(c=>`<a class="cat" onclick="go('list',{k:'${c[0]}'})">${svg(IC[c[3]])}<h3>${t(c[1])}</h3><p>${t(c[2])}</p><span class="lk">${t('viewAll')}</span></a>`).join('')}</div></section>
+${CATS.map(c=>{const l=BK.filter(b=>kd(b)===c[0]).slice(0,4);return `<section class="w sec"><div class="sh"><h2>${t(c[1])}</h2><a class="lk" onclick="go('list',{k:'${c[0]}'})">${t('viewAll')}</a></div>${l.length?`<div class="grid">${l.map(card).join('')}</div>`:`<div class="empty">${t(c[4])}</div>`}</section>`}).join('')}
+<section class="w sec"><h2>${t('whyTitle')}</h2><div class="why"><div><i>⚡</i><b>${t('why1')}</b><span>${t('why1d')}</span></div><div><i>💳</i><b>${t('why2')}</b><span>${t('why2d')}</span></div><div><i>💬</i><b>${t('why3')}</b><span>${t('why3d')}</span></div></div></section>
+<section class="w sec" id="how"><h2>${t('howTitle')}</h2><div class="how">${[1,2,3].map(i=>`<div><em>${i}</em><b>${t('step'+i)}</b><span>${t('step'+i+'d')}</span></div>`).join('')}</div></section>`}
+function lst(){const c=CATS.find(x=>x[0]===V.k),l=BK.filter(b=>kd(b)===V.k);return `<section class="w sec"><h2>${t(c[1])}</h2>${l.length?`<div class="grid">${l.map(card).join('')}</div>`:`<div class="empty">${t(c[4])}</div>`}</section>`}
+function auth(su){return `<div class="w"><div class="box"><h2>${su?t('signup'):t('login')}</h2>${su?`<label>${t('name')}</label><input id="nm">`:''}<label>${t('email')}</label><input id="em" type="email"><label>${t('pw')}</label><input id="pw" type="password">${su?`<label>${t('pw2')}</label><input id="pw2" type="password">`:''}<button class="btn" style="width:100%" onclick="doAuth(${su})">${su?t('signup'):t('login')}</button><p class="help"><a class="lk" onclick="go('${su?'login':'signup'}')">${su?t('haveAcc'):t('noAcc')}</a></p><p class="help">${t('help')}: Telegram @Promax81 · ☎ ${PH}</p></div></div>`}
+async function doAuth(su){const em=$('em').value.trim().toLowerCase(),pw=$('pw').value;if(!em||!pw)return toast(t('fill'));
+if(su){const nm=$('nm').value.trim();if(!nm)return toast(t('fill'));if(pw!==$('pw2').value)return toast(t('mismatch'));const r=await sb.auth.signUp({email:em,password:pw,options:{data:{name:nm}}});if(r.error)return toast(r.error.message);if(!r.data.session)return toast(t('mail'))}
+else{const r=await sb.auth.signInWithPassword({email:em,password:pw});if(r.error)return toast(r.error.message)}
+await boot();go('home')}
+async function out(){await sb.auth.signOut();U=null;ADM=false;MY=[];if(RT){sb.removeChannel(RT);RT=null}go('home')}
+const row=(l,v,c)=>`<div class="dr"><span>${l}</span><b>${e(v)}</b>${c?`<button class="cp" onclick="cp('${e(v)}')" aria-label="copy">${COPY}</button>`:''}</div>`;
+function pay(){const b=BK.find(x=>x.id===V.id);if(!b)return '';const a=ACC[V.m],pr=Number(b.price).toLocaleString()+' '+t('birr'),p=b.kind==='product';
+return `<div class="w"><div class="box wide"><a class="lk" onclick="go('home')">← ${t('back')}</a><h2 style="margin-top:10px">${e(b.title)}</h2><div class="pr" style="margin-bottom:14px">${pr}</div><h3 style="margin-bottom:4px">${t('choose')}</h3><div class="pm">${Object.keys(ACC).map(k=>`<button class="pmb ${V.m===k?'on':''}" onclick="V.m='${k}';V.sent=0;render()">${ACC[k].n}</button>`).join('')}</div>
+${a?`<div class="det">${row(t('accName'),HOLDER,1)}${row(V.m==='tele'?t('pn'):t('accNo'),a.no,1)}${row(t('amount'),pr,0)}</div>
+${V.sent?`${p?`<label>${t('yourPhone')}</label><input id="ph" type="tel"><label>${t('yourAddress')}</label><input id="ad">`:''}<label>${t('receipt')}</label><input id="rc" type="file" accept="image/*,.pdf"><div class="or">${t('or')}</div><label>${t('tx')}</label><input id="tx"><button class="btn" style="width:100%" onclick="sendPay()">${t('submit')}</button>`:`<button class="btn" style="width:100%" onclick="V.sent=1;render()">${t('sent')}</button>`}`:''}
+<p class="help">${t('help')}: Telegram @Promax81 · ☎ ${PH}</p></div></div>`}
+async function sendPay(){const b=BK.find(x=>x.id===V.id),f=$('rc').files[0],tx=$('tx').value.trim(),ph=$('ph')?$('ph').value.trim():null,ad=$('ad')?$('ad').value.trim():null;
+if(!f&&!tx)return toast(t('needOne'));if(b.kind==='product'&&(!ph||!ad))return toast(t('fill'));
+let rp=null;if(f){rp=`${U.id}/${Date.now()}_${f.name.replace(/[^\w.]/g,'_')}`;const u=await sb.storage.from('receipts').upload(rp,f);if(u.error)return toast(u.error.message)}
+const r=await sb.from('payments').insert({user_id:U.id,book_id:b.id,method:V.m,tx_number:tx||null,receipt_path:rp,phone:ph,address:ad,status:'pending'});
+if(r.error)return toast(r.error.message);toast(b.kind==='product'?t('productOk'):t('sentOk'));await load();go('my')}
+function my(){const l=MY.filter(p=>BK.find(b=>b.id===p.book_id)).sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
+return `<section class="w sec"><h2>${t('my')}</h2>${l.length?l.map(p=>{const b=BK.find(x=>x.id===p.book_id);return `<div class="row"><div><b>${e(b.title)}</b><span class="st ${p.status}">${t(p.status)}</span><small>${fmt(p.created_at)}</small></div><div class="act">${p.status==='approved'?(b.kind==='product'?`<span style="color:var(--g2)">${t('approvedProduct')}</span>`:`<button class="btn s" onclick="dl('${b.id}')">${t('dl')}</button>`):''}</div></div>`}).join(''):`<div class="empty">${t('none')}</div>`}</section>`}
+async function dl(id){const b=BK.find(x=>x.id===id),r=await sb.storage.from('pdfs').download(b.pdf_path);if(r.error)return toast(r.error.message);const a=document.createElement('a');a.href=URL.createObjectURL(r.data);a.download=b.title+'.pdf';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),9e3)}
+
+/* ---------- admin ---------- */
+const readF=()=>({title:$('ti').value.trim(),name:$('bn')?$('bn').value.trim():'',description:$('ds').value.trim(),price:$('pc').value});
+function admin(){const s=AD.st;return `<div class="w"><div class="stats"><div class="stat"><b id="s1">${s.total}</b><span>${t('visits')}</span></div><div class="stat"><b id="s2">${s.uniq}</b><span>${t('uniq')}</span></div><div class="stat"><b id="s3">${AD.users.length}</b><span>${t('users')}</span></div></div>
+<div class="tabs">${[['pay','payments'],['add','addNew'],['usr','users']].map(x=>`<button class="btn ${V.tab===x[0]?'':'o'} s" onclick="V.tab='${x[0]}';V.edit=null;V.f=null;V.kind=null;render()">${t(x[1])}</button>`).join('')}</div>
+${V.tab==='pay'?payTab():V.tab==='add'?addTab():usrTab()}</div>`}
+function payTab(){return AD.pays.length?AD.pays.map(p=>{const b=BK.find(x=>x.id===p.book_id)||{title:'—'},u=AD.prof[p.user_id]||{};
+return `<div class="row"><div><b>${e(b.title)}</b><span class="st ${p.status}">${t(p.status)}</span><small>${e(u.name)} · ${e(u.email)}</small><small>${ACC[p.method]?ACC[p.method].n:e(p.method)}${p.tx_number?` · ${t('tx')}: ${e(p.tx_number)}`:''}${p.phone?` · ☎ ${e(p.phone)}`:''}${p.address?` · ${e(p.address)}`:''}</small><small>🕒 ${t('sentAt')}: ${fmt(p.created_at)}</small></div><div class="act">${p.receipt_path?`<button class="btn o s" onclick="rcp('${e(p.receipt_path)}')">${t('view')}</button>`:''}${p.status!=='approved'?`<button class="btn s" onclick="setP('${p.id}','approved')">${t('approve')}</button>`:''}${p.status!=='rejected'?`<button class="btn r s" onclick="setP('${p.id}','rejected')">${t('reject')}</button>`:''}</div></div>`}).join(''):`<div class="empty">${t('none')}</div>`}
+async function rcp(p){const w=window.open('','_blank'),r=await sb.storage.from('receipts').createSignedUrl(p,3600);if(r.error){w&&w.close();return toast(r.error.message)}w.location=r.data.signedUrl}
+async function setP(id,s){const r=await sb.from('payments').update({status:s}).eq('id',id);if(r.error)return toast(r.error.message);toast(t('done'));loadAdmin()}
+function usrTab(){return AD.users.length?AD.users.map(u=>`<div class="row"><div><b>${e(u.name)}</b><small>${e(u.email)}</small></div><small>${t('regAt')}:<br>${fmt(u.created_at)}</small></div>`).join(''):`<div class="empty">${t('none')}</div>`}
+function addTab(){const E=BK.find(x=>x.id===V.edit)||{},F=V.f||E,k=V.kind||E.kind||'book',p=k==='product';
+return `<div class="box wide" style="margin-top:0"><h2>${V.edit?t('edit'):t('addNew')}</h2><label>${t('kind')}</label><select id="kd" onchange="V.f=readF();V.kind=this.value;render()">${[['book','kindBook'],['course','kindCourse'],['product','kindProduct']].map(x=>`<option value="${x[0]}" ${k===x[0]?'selected':''}>${t(x[1])}</option>`).join('')}</select>
+<label>${p?t('pName'):k==='course'?t('cTitle'):t('title')}</label><input id="ti" value="${e(F.title)}">${p?'':`<label>${t('bname')}</label><input id="bn" value="${e(F.name)}">`}
+<label>${t('desc')}</label><textarea id="ds" rows="4">${e(F.description)}</textarea><label>${t('price')} (${t('birr')})</label><input id="pc" type="number" min="0" value="${e(F.price)}">
+<label>${p?t('pPhoto'):t('cover')}${V.edit?` — ${t('keep')}`:''}</label><input id="cv" type="file" accept="image/*">${p?'':`<label>${t('pdf')}${V.edit?` — ${t('keep')}`:''}</label><input id="pf" type="file" accept=".pdf,application/pdf">`}
+<div class="act"><button class="btn" onclick="save()">${V.edit?t('save'):t('publish')}</button>${V.edit?`<button class="btn o" onclick="V.edit=null;V.f=null;V.kind=null;render()">${t('cancel')}</button>`:''}</div></div>
+<h2 style="margin-top:30px">${t('manage')}</h2>${BK.length?BK.map(b=>`<div class="row"><div style="display:flex;gap:12px"><div class="thumb" style="background-image:url('${e(pub(b.cover_path))}')"></div><div><b>${e(b.title)}</b><small>${t({book:'kindBook',course:'kindCourse',product:'kindProduct'}[kd(b)])} · ${Number(b.price).toLocaleString()} ${t('birr')}</small></div></div><div class="act"><button class="btn o s" onclick="V.edit='${b.id}';V.f=null;V.kind=null;render();scrollTo(0,0)">${t('edit')}</button><button class="btn r s" onclick="delB('${b.id}')">${t('del')}</button></div></div>`).join(''):`<div class="empty">${t('none')}</div>`}`}
+async function save(){const E=BK.find(x=>x.id===V.edit),k=$('kd').value,f=readF(),cv=$('cv').files[0],pf=$('pf')?$('pf').files[0]:null,p=k==='product';
+if(!f.title||!f.description||!f.price||(!p&&!f.name))return toast(t('fill'));if(!E&&(!cv||(!p&&!pf)))return toast(t('fill'));
+const data={kind:k,title:f.title,name:p?f.title:f.name,description:f.description,price:Number(f.price)};toast('…');
+const up=async(bk,file,old)=>{const n=Date.now()+'_'+Math.random().toString(36).slice(2,6)+'_'+file.name.replace(/[^\w.]/g,'_'),r=await sb.storage.from(bk).upload(n,file);if(r.error)throw r.error;if(old)await sb.storage.from(bk).remove([old]);return n};
+try{if(cv)data.cover_path=await up('covers',cv,E&&E.cover_path);if(pf)data.pdf_path=await up('pdfs',pf,E&&E.pdf_path);
+const r=E?await sb.from('books').update(data).eq('id',E.id):await sb.from('books').insert(data);if(r.error)throw r.error}catch(x){return toast(x.message)}
+V.edit=null;V.f=null;V.kind=null;toast(t('done'));await load();render()}
+async function delB(id){if(!confirm(t('sure')))return;const b=BK.find(x=>x.id===id);if(b.cover_path)await sb.storage.from('covers').remove([b.cover_path]);if(b.pdf_path)await sb.storage.from('pdfs').remove([b.pdf_path]);const r=await sb.from('books').delete().eq('id',id);if(r.error)return toast(r.error.message);await load();render()}
+async function loadAdmin(){const[p,u,s]=await Promise.all([sb.from('payments').select('*').order('created_at',{ascending:false}),sb.from('profiles').select('*').order('created_at',{ascending:false}),sb.rpc('visit_stats')]);
+AD.pays=p.data||[];AD.users=u.data||[];AD.prof={};AD.users.forEach(x=>AD.prof[x.id]=x);AD.st=s.data||AD.st;
+if(V.v!=='admin')return;if(V.tab==='add'){if($('s1')){$('s1').textContent=AD.st.total;$('s2').textContent=AD.st.uniq;$('s3').textContent=AD.users.length}}else render()}
+function rt(){if(RT)return;RT=sb.channel('adm');['visits','profiles','payments'].forEach(tb=>RT.on('postgres_changes',{event:'*',schema:'public',table:tb},()=>loadAdmin()));RT.subscribe()}
+
+/* ---------- core ---------- */
+async function load(){BK=(await sb.from('books').select('*').order('created_at',{ascending:false})).data||[];MY=U?((await sb.from('payments').select('*').eq('user_id',U.id)).data||[]):[]}
+async function boot(){const s=(await sb.auth.getSession()).data.session;U=s?s.user:null;ADM=false;if(U){const r=await sb.rpc('is_admin');ADM=r.data===true}await load();if(ADM){await loadAdmin();rt()}}
+async function visit(){if(ADM||sessionStorage.getItem('v'))return;sessionStorage.setItem('v',1);let id=localStorage.getItem('vid');if(!id){id=crypto.randomUUID();localStorage.setItem('vid',id)}sb.from('visits').insert({vid:id})}
+function render(){document.title=t('brand');const v=V.v;$('app').innerHTML=hdr()+`<main>${v==='home'?home():v==='list'?lst():v==='login'?auth(0):v==='signup'?auth(1):v==='pay'?pay():v==='my'&&U?my():v==='admin'&&ADM?admin():home()}</main>`+ftr()}
+(async()=>{if(SB_URL.startsWith('YOUR_')){$('app').innerHTML=`<div class="box"><h2>${t('setup')}</h2></div>`;return}
+sb=supabase.createClient(SB_URL,SB_KEY);await boot();render();visit()})();
+</script></body></html>
